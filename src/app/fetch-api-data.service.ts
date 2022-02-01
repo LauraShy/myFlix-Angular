@@ -14,7 +14,6 @@ const username = localStorage.getItem('user');
 @Injectable({
   providedIn: 'root'
 })
-
 // User Registration
 export class UserRegistrationService {
   constructor(private http: HttpClient) {
@@ -38,6 +37,9 @@ export class UserRegistrationService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 // User Login
 export class UserLoginService {
   constructor(private http: HttpClient) {
