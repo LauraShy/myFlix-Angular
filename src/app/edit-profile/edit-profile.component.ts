@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EditUserProfileService } from '../fetch-api-data.service';
 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,14 +15,15 @@ export class EditProfileComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
-    public fetchApiData: EditUserProfileService,
+    public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<EditProfileComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
   }
-/*
+
   editUserProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((res) => {
       this.dialogRef.close();
@@ -39,5 +41,5 @@ export class EditProfileComponent implements OnInit {
       }, 3500);
     })
   }
-*/
+
 }
