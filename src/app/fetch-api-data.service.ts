@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, catchError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
+import { Router } from '@angular/router';
 
 // delcaring the api url that will rpovide data for the client app
 const apiUrl = 'https://myflixapplication.herokuapp.com/';
@@ -72,6 +72,7 @@ export class GetAllMoviesService {
   constructor(private http: HttpClient) {
   }
   getAllMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
@@ -105,6 +106,7 @@ export class GetSingleMovieService {
   constructor(private http: HttpClient) {
   }
   getSingleMovie(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/:movieId', {
       headers: new HttpHeaders(
         {
@@ -139,6 +141,7 @@ export class GetDirectorService {
   constructor(private http: HttpClient) {
   }
   getDirector(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/director/:Name', {
       headers: new HttpHeaders(
         {
@@ -173,6 +176,7 @@ export class GetGenreService {
   constructor(private http: HttpClient) {
   }
   getGenre(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/:Name', {
       headers: new HttpHeaders(
         {
@@ -207,6 +211,7 @@ export class GetUserProfileService {
   constructor(private http: HttpClient) {
   }
   getUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
     return this.http.get(apiUrl + `users/${username}`, {
       headers: new HttpHeaders(
         {
@@ -241,7 +246,8 @@ export class GetFavoriteMoviesService {
   constructor(private http: HttpClient) {
   }
   getFavoriteMovies(): Observable<any> {
-    // this was not an endpoint previous established, unsure if it will work
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     return this.http.get(apiUrl + `users/${username}/movies`, { 
       headers: new HttpHeaders(
         {
@@ -276,6 +282,8 @@ export class AddFavoriteMoviesService {
   constructor(private http: HttpClient) {
   }
   addFavoriteMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     return this.http.post(apiUrl + `users/${username}/movies/:movieId`, {
       headers: new HttpHeaders(
         {
@@ -310,6 +318,8 @@ export class DeleteFavoriteMoviesService {
   constructor(private http: HttpClient) {
   }
   deleteFavoriteMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     return this.http.delete(apiUrl + `users/${username}/movies/:movieId`, {
       headers: new HttpHeaders(
         {
@@ -344,6 +354,8 @@ export class EditUserProfileService {
   constructor(private http: HttpClient) {
   }
   editUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     return this.http.put(apiUrl + `users/${username}`, {
       headers: new HttpHeaders(
         {
@@ -378,6 +390,8 @@ export class DeleteUserProfileService {
   constructor(private http: HttpClient) {
   }
   deleteUserProfile(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     return this.http.delete(apiUrl + `users/${username}`, {
       headers: new HttpHeaders(
         {
