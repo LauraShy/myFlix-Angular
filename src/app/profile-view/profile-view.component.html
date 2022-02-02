@@ -1,0 +1,18 @@
+<div>
+  <h2>Hello {{ user.Username }} </h2>
+
+  <mat-card class='user-info'>
+    <mat-card-headrer>
+      <mat-card-title>Your Profile Information</mat-card-title>
+    </mat-card-headrer>
+    <mat-card-content>
+      <h3><b>Username: </b>{{ user.Username }}</h3>
+      <h3><b>Email: </b>{{ user.Email }}</h3>
+      <h3><b>Birthday: </b>{{ user.Birthday }}</h3>
+      <br>
+      <button class='profile-btn' mat-raised-button (click)="openEditUserProfile()">
+        Edit Profile
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
