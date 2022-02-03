@@ -11,7 +11,6 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./profile-view.component.scss']
 })
 export class ProfileViewComponent implements OnInit {
-
   user: any = {};
 
   constructor(
