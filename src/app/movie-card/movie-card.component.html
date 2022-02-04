@@ -10,7 +10,7 @@
           <button
               mat-button
               color='primary'
-              (click)='openGenre()'
+              (click)='openGenre(movie.Genre.Name, movie.Genre.Description)'
               style='margin-right: 10px;'
           >
               Genre
@@ -18,7 +18,7 @@
           <button
               mat-button
               color='primary'
-              (click)='openDirector()'
+              (click)='openDirector(movie.Director.Name, movie.Director.Bio, movie.Director.Birth)'
               style='margin-right: 10px;'
           >
               Director
@@ -26,6 +26,7 @@
           <button
               mat-button
               color='primary'
+              (click)='openSynopsis(movie.Title, movie.ImagePath, movie.Description)'
           >
               Synopsis
           </button>

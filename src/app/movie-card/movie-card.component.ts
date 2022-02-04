@@ -29,21 +29,35 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openDirector(): void {
+  openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorViewComponent, {
-      width: '280px'
+      data: {
+        Name: name,
+        Bio: bio,
+        Birth: birth,
+      },
+      width: '500px'
     });
   }
 
-  openGenre(): void {
+  openGenre(name: string, description: string): void {
     this.dialog.open(GenreViewComponent, {
-      width: '280px'
+      data: {
+        Name: name,
+        Description: description,
+      },
+      width: '500px'
     });
   }
 
-  openSynopsis(): void {
+  openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisViewComponent, {
-      width: '280px'
+      data: {
+        Title: title,
+        ImagePath: imagePath,
+        Description: description,
+      },
+      width: '500px'
     });
   }
 
