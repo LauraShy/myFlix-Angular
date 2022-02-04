@@ -9,7 +9,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DirectorViewComponent implements OnInit {
 
   constructor(
-
+    
+    /**
+     * Uses Inject to get the movie details from the movie object
+     */
     @Inject(MAT_DIALOG_DATA)
     public data: {
       Name: string;

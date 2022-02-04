@@ -20,10 +20,16 @@ export class ProfileViewComponent implements OnInit {
     public router: Router
   ) { }
 
+  /**
+   * Gets user profile when the page is opened
+   */
   ngOnInit(): void {
     this.getUserProfile();
   }
 
+  /**
+   * Gets user info from backend
+   */
   getUserProfile(): void {
     let user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile().subscribe((res: any) => {
@@ -31,19 +37,28 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens dialog to edit user information
+   */
   openEditUserProfile(): void {
     this.dialog.open(EditProfileComponent, {
       width: '500px'
     });
   }
 
+  /**
+   * Allows user to delete their profile
+   * Re-routes to the welcome page
+   */
   deleteProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
       this.fetchApiData.deleteUserProfile().subscribe(() => {
-        localStorage.clear();
-        //this.router.navigate(['welcome']);
         this.snackBar.open('Your account was deleted', 'OK', {
           duration: 3000
+        });
+        localStorage.clear();
+        this.router.navigate(['welcome']).then(() => {
+          window.location.reload();
         });
       });
     }

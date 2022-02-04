@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
@@ -14,13 +14,19 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
+  /**
+   * Gets movies when initialized 
+   */
   ngOnInit(): void {
     this.getMovies();
   }
 
+  /**
+   * Get all movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -29,6 +35,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Open the director component to view info
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirector(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorViewComponent, {
       data: {
@@ -40,6 +52,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Open the genre component to view info
+   * @param name 
+   * @param description 
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreViewComponent, {
       data: {
@@ -50,6 +67,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Open the synopisis component to view info
+   * @param title 
+   * @param imagePath 
+   * @param description 
+   */
   openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisViewComponent, {
       data: {

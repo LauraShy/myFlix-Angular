@@ -20,14 +20,25 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * Routes user to movies page
+   */
   goToMoviesPage(): void {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * Routes user to profile page
+   */
   goToProfilePage(): void {
     this.router.navigate(['profile']);
   }
 
+  /**
+   * Logs a user out, clears the localStorage
+   * Re-routes to the welcome page
+   */
   logout(): void {
     localStorage.clear();
     this.router.navigate(['welcome']).then(() => {

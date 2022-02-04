@@ -10,6 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar'; // display notificati
 })
 export class UserRegistrationFormComponent implements OnInit {
 
+  /**
+   * Required fields for users to register
+   */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
@@ -21,10 +24,11 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Sends form inputs ot backend
+  /**
+   * Registers a new user and save the users information to the database
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
-      // logic for successful registration goes here
       this.dialogRef.close();
       console.log(response);
       this.snackBar.open('User registered successfully!', 'OK', {

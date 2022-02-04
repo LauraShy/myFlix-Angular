@@ -12,6 +12,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /**
+   * Required fields for users to login
+   */
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -23,6 +26,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Send a request to login the user
+   * Saves the token and username in localSotrage
+   * Once logged in, re-route to movies page 
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((response) => {
       this.dialogRef.close();
