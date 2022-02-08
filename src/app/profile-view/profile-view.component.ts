@@ -12,6 +12,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class ProfileViewComponent implements OnInit {
   user: any = {};
+  favs: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -34,6 +35,7 @@ export class ProfileViewComponent implements OnInit {
     let user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile().subscribe((res: any) => {
       this.user = res;
+      this.getFavs();
     });
   }
 
@@ -44,6 +46,31 @@ export class ProfileViewComponent implements OnInit {
     this.dialog.open(EditProfileComponent, {
       width: '500px'
     });
+  }
+
+  // filter out the movies that aren't favs
+  getFavs(): void {
+    this.fetchApiData.getAllMovies().subscribe((res: any) => {
+      this.favs = res.filter((movie: any) => {
+        return this.user.FavoriteMovies.includes(movie._id)
+      });
+      console.log(this.favs);
+      return this.favs;
+    })
+  }
+
+  /**
+   * Allows user to remove movie from favs
+   * @param id 
+   */
+  removeFav(id: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open('Successfully removed from favorite movies.', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+      return this.favs;
+    })
   }
 
   /**

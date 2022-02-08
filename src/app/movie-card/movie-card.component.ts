@@ -12,6 +12,8 @@ import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component'
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  favs: any[] = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -22,6 +24,7 @@ export class MovieCardComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getMovies();
+    this.getFavs();
   }
 
   /**
@@ -33,6 +36,33 @@ export class MovieCardComponent implements OnInit {
       console.log(this.movies);
       return this.movies;
     });
+  }
+
+  /**
+   * Get users favorite movies
+   */
+  getFavs(): void {
+    this.fetchApiData.getUserProfile().subscribe((resp: any) => {
+      this.favs = resp.FavoriteMovies;
+      console.log(this.favs);
+      return this.favs;
+    });
+  }
+
+  isFavorited(id: string): boolean {
+    return this.favs.includes(id);
+  }
+
+  handleFavorite(id: string): void {
+    this.fetchApiData.addFavoriteMovies(id).subscribe(() => {
+      this.getFavs();
+    })
+  }
+
+  handleUnfavorite(id: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe(() => {
+      this.getFavs();
+    })
   }
 
   /**
