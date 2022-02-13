@@ -48,7 +48,9 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
-  // filter out the movies that aren't favs
+  /**
+   * Filters out movies that aren't in favs
+   */
   getFavs(): void {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       this.favs = res.filter((movie: any) => {

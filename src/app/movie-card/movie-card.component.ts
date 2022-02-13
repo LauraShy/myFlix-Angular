@@ -49,16 +49,29 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks if movie if favorited
+   * @param id 
+   * @returns 
+   */
   isFavorited(id: string): boolean {
     return this.favs.includes(id);
   }
 
+  /**
+   * Adds a favorite movie
+   * @param id 
+   */
   handleFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe(() => {
       this.getFavs();
     })
   }
 
+  /**
+   * Deletes a favorite movie
+   * @param id 
+   */
   handleUnfavorite(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe(() => {
       this.getFavs();
