@@ -79,16 +79,18 @@ export class ProfileViewComponent implements OnInit {
    */
   deleteProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
-      this.fetchApiData.deleteUserProfile().subscribe(() => {
-        this.snackBar.open('Your account was deleted', 'OK', {
-          duration: 3000
-        });
-        localStorage.clear();
-        this.router.navigate(['welcome']).then(() => {
+      this.fetchApiData.deleteUserProfile().subscribe(
+        () => {
+          this.snackBar.open('Your account was deleted', 'OK', {
+            duration: 3000
+          });
+          localStorage.clear();
+        },
+        () => {
+          this.router.navigate(['welcome']).then(() => {
           window.location.reload();
         });
-      });
-    }
+      })
+    };
   }
-
 }
