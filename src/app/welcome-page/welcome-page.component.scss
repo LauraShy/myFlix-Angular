@@ -1,0 +1,31 @@
+.main-page {
+  align-items: center;
+  justify-content: center;
+  background-color: #1A2B50;
+  background-size: cover;
+  height: 100%;
+  color: white;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.button-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background-color: #84AFDD;
+}
