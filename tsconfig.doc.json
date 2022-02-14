@@ -1,0 +1,4 @@
+{
+  "include": ["src/app/**/*.ts"],
+  "exclude": ["src/app/app.module.ts, src/app/app.component.ts, src/app/app.component.spec.ts, src/app/fetch-api-data.service.spec.ts"]
+}
